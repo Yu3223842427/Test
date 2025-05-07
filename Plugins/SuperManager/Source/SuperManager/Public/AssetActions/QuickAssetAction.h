@@ -19,7 +19,7 @@ protected:
 	UFUNCTION(CallInEditor)
 	void TestFunc();
 
-	//根据数量生成资产
+	//根据数量生成新的资产
 	UFUNCTION(CallInEditor)
 	void DuplicateAsset(int32 NumOfDuplicates);
 };
