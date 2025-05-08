@@ -6,6 +6,7 @@
 #include "AssetActionUtility.h"
 #include "EditorUtilityLibrary.h"
 #include "EditorAssetLibrary.h"
+#include "Materials/MaterialInstanceConstant.h"
 #include "QuickAssetAction.generated.h"
 
 /**
@@ -22,4 +23,21 @@ protected:
 	//根据数量生成新的资产
 	UFUNCTION(CallInEditor)
 	void DuplicateAsset(int32 NumOfDuplicates);
+
+	UFUNCTION(CallInEditor)
+	void AddPrefixes();
+
+	//查找未使用的资源
+	UFUNCTION(CallInEditor)
+	void RemoveUnusedAssets();
+private:
+	TMap<UClass*,FString> PrefixMap =
+		{
+		{UBlueprint::StaticClass(),TEXT("BP_")},
+		{UStaticMesh::StaticClass(),TEXT("SM)")},
+		{UMaterialInstanceConstant::StaticClass(),TEXT("MI_")},
+		{UMaterial::StaticClass(),TEXT("M_")},
+		{UMaterialFunctionInterface::StaticClass(),TEXT("MF_")},
+		
+		};
 };
